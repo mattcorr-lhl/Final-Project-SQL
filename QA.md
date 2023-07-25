@@ -44,6 +44,14 @@
     FROM analytics;
     ```
 
+- **Joining Table with Duplicates:** When joining with the `analytics` table I would ensure to only select distinct rows to avoid including duplicates in my calculations
+    ```SQL
+    SELECT *
+    FROM all_sessions
+    JOIN (SELECT DISTINCT * FROM analytics)
+    ON all_sessions.fullvisitorid = analytics.fullvisitorid;
+    ```
+
 - **Inconsistent Data Discovery:** The following query was used to determine which products have multiple names for a single SKU (There are 67 remaining, I did not leave enough time to fix them all)
     ```SQL
     -- Find items with multiple names
